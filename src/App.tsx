@@ -1,22 +1,21 @@
+import {Route, Routes} from "react-router-dom";
+
+import {Layout} from "./components/layout/layout";
+import {Home} from "./pages/home";
+import {Portfolio} from "./pages/portfolio";
+import PrivateRoute from "./routes/PrivateRoutes";
+
 function App() {
     return (
-        <div className="w-screen min-h-[100dvh] bg-[#111111] text-gray-300 flex flex-col justify-center items-center p-6">
-            <img alt="Iru" src="/iru.png" />
+        <Routes>
+            <Route element={<Layout />}>
+                <Route element={<Home />} path="/" />
 
-            <div className="flex gap-10">
-                <a className="hover:font-bold hover:scale-105 transition-all" href="mailto:iru@hotmail.com">
-                    Contacto
-                </a>
-                <a
-                    className="hover:font-bold hover:scale-105 transition-all"
-                    href="https://www.linkedin.com/in/iruarostegui/"
-                    rel="noreferrer"
-                    target="_blank"
-                >
-                    Portfolio
-                </a>
-            </div>
-        </div>
+                <Route element={<PrivateRoute />}>
+                    <Route element={<Portfolio />} path="/portfolio" />
+                </Route>
+            </Route>
+        </Routes>
     );
 }
 
